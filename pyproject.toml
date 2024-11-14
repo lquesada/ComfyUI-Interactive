@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-interactive"
-description = "Nodes that allow making the UI interactive, with selectors, switches, triggers, etc.. Enables previewing generations at low sampling steps, then unlocking full sampling with the click of a button. Enables selecting across multiple options with the click of a button to move a workflow forward."
+description = "Nodes that allow making the UI interactive, with selectors and switches, etc.. Enables previewing generations at low sampling steps, then unlocking full sampling with the click of a button. Enables selecting across multiple options with the click of a button to move a workflow forward."
 version = "1.0.0"
 license = { file = "LICENSE" }
 

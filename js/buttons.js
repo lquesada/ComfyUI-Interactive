@@ -236,9 +236,6 @@ function resetInteractiveForward(node) {
             findWidgetByName(currentNode, "selected").value = false;
             currentNode.imgs = [];
         }
-        if (currentNode.type === "InteractiveSave" || currentNode.type == "InteractiveTrigger" || currentNode.type == "InteractiveTriggerWithParameters") {
-            currentNode.imgs = [];
-        }
 
         const connections = getNodeConnections(currentNode);
         connections.outputs.forEach(outputNode => {
@@ -252,14 +249,6 @@ function resetInteractiveForward(node) {
 app.registerExtension({
     name: "interactive.showbutton",
     nodeCreated(node) {
-        if (node.comfyClass === "InteractiveTrigger" || node.comfyClass === "InteractiveTriggerWithParameters") {
-            toggleWidget(node, findWidgetByName(node, "trigger_action"), false);
-            node.addWidget("button", "👤 Trigger Action", "", () => {
-                const triggerWidget = findWidgetByName(node, "trigger_action");
-                triggerWidget.value = (triggerWidget.value + 1) % 1000;
-                app.queuePrompt(0, 1);
-            });
-        }
         if (node.comfyClass == "InteractiveSelector" || node.comfyClass == "InteractiveSelectorWithParameters") {
             toggleWidget(node, findWidgetByName(node, "selected"), false);
             node.addWidget("button", textSelect, "", () => {

@@ -1,5 +1,3 @@
-from .comfyui_interactive import InteractiveTrigger
-from .comfyui_interactive import InteractiveTriggerWithParameters
 from .comfyui_interactive import InteractiveSelector
 from .comfyui_interactive import InteractiveSelectorWithParameters
 from .comfyui_interactive import InteractiveSwitch
@@ -16,8 +14,6 @@ from .comfyui_interactive import InteractiveFloat
 WEB_DIRECTORY = "js"
 
 NODE_CLASS_MAPPINGS = {
-    "InteractiveTrigger": InteractiveTrigger,
-    "InteractiveTriggerWithParameters": InteractiveTriggerWithParameters,
     "InteractiveSelector": InteractiveSelector,
     "InteractiveSelectorWithParameters": InteractiveSelectorWithParameters,
     "InteractiveSwitch": InteractiveSwitch,
@@ -33,8 +29,6 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "InteractiveTrigger": "Interactive Trigger",
-    "InteractiveTriggerWithParameters": "Interactive Trigger (with parameters)",
     "InteractiveSelector": "Interactive Selector",
     "InteractiveSelectorWithParameters": "Interactive Selector (with parameters)",
     "InteractiveSwitch": "Interactive Switch",

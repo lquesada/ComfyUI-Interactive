@@ -10,8 +10,6 @@ These nodes allow setting up interactive workflows.
 
 Several "Interactive Selector" nodes may be plugged to an "Interactive Switch". Selector nodes contain a button that the user can press to select that path of execution and continue execution.
 
-The "Interactive Trigger" only allows execution to progress when a button is pressed.
-
 The simple versions of the nodes show and pass an image. The "with parameters" versions of the nodes show and pass the image (optional), but also passes a latent, mask, string, int, and float.
 
 The "Interactive Save" node previews images and contains a button that triggers saving the image.
@@ -45,14 +43,6 @@ This example uses "Interactive Selector (with parameters)" and "Interactive Swit
 Download the example workflow from [here](interactive_example_workflow_with_parameters.json) or drag and drop the screenshot into ComfyUI.
 
 ![Workflow](interactive_example_workflow_with_parameters.png)
-
-## Example (Trigger)
-
-This example uses an "Interactive Trigger" node on a low-step preview to gate moving on with more sampling steps, and an "Interactive Save" node to gate saving an image on a button click.
-
-Download the example workflow from [here](interactive_example_workflow_trigger.json) or drag and drop the screenshot into ComfyUI.
-
-![Workflow](interactive_example_workflow_trigger.png)
 
 ## Example (Full workflow with several options per step)
 
