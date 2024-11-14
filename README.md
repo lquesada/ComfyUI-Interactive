@@ -76,7 +76,7 @@ Be aware that some nodes may not interact well with these interactive nodes. For
 -   Custom-Scripts "String Function" node: this node seems to have an issue when showing the concatenated text that makes it necessary to retrigger execution of some nodes. This slows down interactive workflows. Instead, use the "String Append" node included in this repository.
 
 # Changelog
-## 2024-11-13 TODO TODO
+## 2024-11-14
 - Initial commit.
 
 # License
