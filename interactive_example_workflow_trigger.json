@@ -1,0 +1,866 @@
+{
+  "last_node_id": 19,
+  "last_link_id": 35,
+  "nodes": [
+    {
+      "id": 7,
+      "type": "InteractiveInteger",
+      "pos": {
+        "0": 160,
+        "1": 1030
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "integer",
+          "type": "INT",
+          "links": [
+            3,
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Integer (for Interactive) - max_steps",
+      "properties": {
+        "Node name for S&R": "InteractiveInteger"
+      },
+      "widgets_values": [
+        20
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": {
+        "0": 40,
+        "1": 100
+      },
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1,
+            20
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            9
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            12,
+            24
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd1.5/dreamshaper_8.safetensors"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "InteractiveInteger",
+      "pos": {
+        "0": 160,
+        "1": 1150
+      },
+      "size": {
+        "0": 344.3999938964844,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "integer",
+          "type": "INT",
+          "links": [
+            6,
+            29
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Integer (for Interactive) - preview_steps",
+      "properties": {
+        "Node name for S&R": "InteractiveInteger"
+      },
+      "widgets_values": [
+        10
+      ]
+    },
+    {
+      "id": 9,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": 150,
+        "1": 680
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10,
+            22
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "ugly"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "EmptyLatentImage",
+      "pos": {
+        "0": 160,
+        "1": 1310
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            30
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "type": "InteractiveSeed",
+      "pos": {
+        "0": 1070,
+        "1": 430
+      },
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "seed_value",
+          "type": "INT",
+          "links": [
+            31,
+            32
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InteractiveSeed"
+      },
+      "widgets_values": [
+        203209234455398,
+        ""
+      ],
+      "color": "#444444",
+      "bgcolor": "#444444"
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": 160,
+        "1": 400
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            11,
+            21
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "dog eating chocolate ice cream"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "KSamplerAdvanced",
+      "pos": {
+        "0": 1430,
+        "1": 580
+      },
+      "size": {
+        "0": 320,
+        "1": 510
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 20
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 21
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 22
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 35
+        },
+        {
+          "name": "start_at_step",
+          "type": "INT",
+          "link": 29,
+          "widget": {
+            "name": "start_at_step"
+          }
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 4,
+          "widget": {
+            "name": "steps"
+          }
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 32,
+          "widget": {
+            "name": "noise_seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            23
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced"
+      },
+      "widgets_values": [
+        "enable",
+        685150185064353,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "normal",
+        0,
+        10000,
+        "disable"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 1480,
+        "1": 1140
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 23
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            25
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 14,
+      "type": "InteractiveSave",
+      "pos": {
+        "0": 1840,
+        "1": 590
+      },
+      "size": {
+        "0": 210,
+        "1": 290
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 25
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "InteractiveSave"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        0,
+        ""
+      ],
+      "color": "#444444",
+      "bgcolor": "#444444"
+    },
+    {
+      "id": 3,
+      "type": "KSamplerAdvanced",
+      "pos": {
+        "0": 640,
+        "1": 570
+      },
+      "size": {
+        "0": 320,
+        "1": 540
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 30
+        },
+        {
+          "name": "end_at_step",
+          "type": "INT",
+          "link": 6,
+          "widget": {
+            "name": "end_at_step"
+          }
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 3,
+          "widget": {
+            "name": "steps"
+          }
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 31,
+          "widget": {
+            "name": "noise_seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            16,
+            33
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced"
+      },
+      "widgets_values": [
+        "enable",
+        490309960760018,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "normal",
+        0,
+        10000,
+        "disable"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 680,
+        "1": 1200
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 16
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            34
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 19,
+      "type": "InteractiveTriggerWithParameters",
+      "pos": {
+        "0": 1040,
+        "1": 630
+      },
+      "size": {
+        "0": 310.79998779296875,
+        "1": 230
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34,
+          "shape": 7
+        },
+        {
+          "name": "parameter_latent",
+          "type": "LATENT",
+          "link": 33,
+          "shape": 7
+        },
+        {
+          "name": "parameter_mask",
+          "type": "MASK",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "parameter_string",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "parameter_string"
+          },
+          "shape": 7
+        },
+        {
+          "name": "parameter_int",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "parameter_int"
+          },
+          "shape": 7
+        },
+        {
+          "name": "parameter_float",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "parameter_float"
+          },
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "parameter_latent",
+          "type": "LATENT",
+          "links": [
+            35
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "parameter_mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "parameter_string",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "parameter_int",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "parameter_float",
+          "type": "FLOAT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InteractiveTriggerWithParameters"
+      },
+      "widgets_values": [
+        0,
+        "",
+        0,
+        0,
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      4,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      4,
+      1,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      7,
+      0,
+      3,
+      5,
+      "INT"
+    ],
+    [
+      4,
+      7,
+      0,
+      1,
+      5,
+      "INT"
+    ],
+    [
+      6,
+      8,
+      0,
+      3,
+      4,
+      "INT"
+    ],
+    [
+      9,
+      4,
+      1,
+      9,
+      0,
+      "CLIP"
+    ],
+    [
+      10,
+      9,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      11,
+      5,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      4,
+      2,
+      10,
+      1,
+      "VAE"
+    ],
+    [
+      16,
+      3,
+      0,
+      10,
+      0,
+      "LATENT"
+    ],
+    [
+      20,
+      4,
+      0,
+      1,
+      0,
+      "MODEL"
+    ],
+    [
+      21,
+      5,
+      0,
+      1,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      22,
+      9,
+      0,
+      1,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      23,
+      1,
+      0,
+      13,
+      0,
+      "LATENT"
+    ],
+    [
+      24,
+      4,
+      2,
+      13,
+      1,
+      "VAE"
+    ],
+    [
+      25,
+      13,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      8,
+      0,
+      1,
+      4,
+      "INT"
+    ],
+    [
+      30,
+      17,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      31,
+      18,
+      0,
+      3,
+      6,
+      "INT"
+    ],
+    [
+      32,
+      18,
+      0,
+      1,
+      6,
+      "INT"
+    ],
+    [
+      33,
+      3,
+      0,
+      19,
+      1,
+      "LATENT"
+    ],
+    [
+      34,
+      10,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      19,
+      1,
+      1,
+      3,
+      "LATENT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7513148009015786,
+      "offset": [
+        183.62061931511303,
+        344.94653369555596
+      ]
+    }
+  },
+  "version": 0.4
+}
