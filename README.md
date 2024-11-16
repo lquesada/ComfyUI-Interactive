@@ -28,7 +28,9 @@ These nodes do not require auto-enqueue but need an empty queue to work, so that
 
 # Video Tutorial
 
-Coming soon!
+[![Video Tutorial](https://img.youtube.com/vi/9aFANkP1VTo/0.jpg)](https://www.youtube.com/watch?v=9aFANkP1VTo)
+
+[(click to open in YouTube)](https://www.youtube.com/watch?v=9aFANkP1VTo)
 
 ## Example (Simple)
 
