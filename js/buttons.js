@@ -116,6 +116,18 @@ function updateInteractive() {
 
     // Loop through nodes in order
     graph._nodes_in_order.forEach(node => {
+        if (node.type === "InteractiveSelector" || node.type === "InteractiveSelectorWithParameters") {
+            const connections = getNodeConnections(node);
+            const switchOutputs = connections.outputs.filter(input => 
+                input.type === "InteractiveSwitch" || input.type == "InteractiveSwitchWithParameters"
+            );
+            if (switchOutputs.length == 0) {
+                const isSelected = findWidgetByName(node, "selected")?.value;
+                node.bgcolor = isSelected ? activeColor : inactiveColor;
+                node.color = isSelected ? activeColor : inactiveColor;
+                findButtonWidget(node).name = isSelected ? textDeselect : textSelect;
+            }
+        }
         if (node.type === "InteractiveSwitch" || node.type === "InteractiveSwitchWithParameters") {
             // Get all inputs for the current switch node
             const connections = getNodeConnections(node);
