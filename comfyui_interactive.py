@@ -323,11 +323,15 @@ class InteractiveStringAppend:
         else:  # "enter"
             use = '\n'
 
-        if input1 is None and input2 is None:
+        if not input1:
+            input1 = "" 
+        if not input2:
+            input2 = "" 
+        if not input1 and not input2:
             output = ""
-        elif input1 is None:
+        elif not input1:
             output = input2
-        elif input2 is None:
+        elif not input2:
             output = input1
         else:
             output = input1 + use + input2
