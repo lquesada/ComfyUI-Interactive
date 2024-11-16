@@ -8,7 +8,9 @@ Check ComfyUI here: https://github.com/comfyanonymous/ComfyUI
 
 These nodes allow setting up interactive workflows.
 
-Several "Interactive Selector" nodes may be plugged to an "Interactive Switch". Selector nodes contain a button that the user can press to select that path of execution and continue execution.
+Several "Interactive Selector" nodes may be plugged into an "Interactive Switch". Selector nodes contain a button that the user can press to select that path of execution and continue execution.
+
+When a single "Interactive Selector" node is plugged into an "Interactive Switch" node, it can be used to disable or enable paths of the workflow.
 
 The simple versions of the nodes show and pass an image. The "with parameters" versions of the nodes show and pass the image (optional), but also passes a latent, mask, string, int, and float.
 
@@ -54,6 +56,14 @@ Download the example workflow from [here](interactive_example_workflow_full.json
 
 ![Workflow](interactive_example_workflow_full.png)
 
+## Example (Low-step preview before continuing sampling)
+
+This example samples to 5 steps, then uses a single interactive selector to show a preview and block further sampling. If the results are satisfactory, the selector can be triggered to continue the sampling.
+
+Download the example workflow from [here](interactive_example_workflow_preview.json) or drag and drop the screenshot into ComfyUI.
+
+![Workflow](interactive_example_workflow_preview.png)
+
 # Installation Instructions
 
 Install via ComfyUI-Manager or go to the custom_nodes/ directory and run ```$ git clone https://github.com/lquesada/ComfyUI-Interactive.git```
@@ -66,6 +76,8 @@ Be aware that some nodes may not interact well with these interactive nodes. For
 -   Custom-Scripts "String Function" node: this node seems to have an issue when showing the concatenated text that makes it necessary to retrigger execution of some nodes. This slows down interactive workflows. Instead, use the "String Append" node included in this repository.
 
 # Changelog
+## 2024-11-15
+- Enabled a single selector to be connected to a switch to block paths in the workflow, and corresponding example.
 ## 2024-11-14
 - Initial commit.
 

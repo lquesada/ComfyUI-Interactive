@@ -144,6 +144,13 @@ function updateInteractive() {
                     selector.color = isSelected ? activeColor : inactiveColor;
                     findButtonWidget(selector).name = isSelected ? textDeselect : textSelect;
                 });
+            } else if (selectorInputs.length === 1) {
+                // Only one selector connected, acts as trigger/gate, always mark as selectable now
+                selectorInputs.forEach(selector => {
+                    selector.bgcolor = selectColor;
+                    selector.color = selectColor;
+                    findButtonWidget(selector).name = textSelect;
+                });
             } else if (!hasBlockedSwitchesBefore(node)) {
                 // No selectors are selected in this switch, and no blocking switches before
                 selectorInputs.forEach(selector => {
