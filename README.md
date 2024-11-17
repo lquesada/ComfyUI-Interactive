@@ -14,6 +14,8 @@ When a single "Interactive Selector" node is plugged into an "Interactive Switch
 
 The simple versions of the nodes show and pass an image. The "with parameters" versions of the nodes show and pass the image (optional), but also passes a latent, mask, string, int, and float.
 
+If "propagate\_deselect" is enabled, any selector node that is deselected will automatically deselect any selector nodes further ahead in the workflow. This allows configuring how interactivity work at selector node level.
+
 The "Interactive Save" node previews images and contains a button that triggers saving the image.
 
 The "Interactive Seed" node provides seeds and contains a button that triggers generating a new seed.
