@@ -9,11 +9,24 @@ import os
 
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
-import impact.core as core
+from server import PromptServer
 
 import numpy as np
 
 from comfy.cli_args import args
+
+
+current_prompt = None
+
+def onprompt(json_data):
+    try:
+        current_prompt = json_data
+    except Exception as e:
+        print(f"[WARN] ComfyUI-Interactive: Error loading prompt - interactive nodes will not work.\n{e}")
+
+    return json_data
+
+PromptServer.instance.add_on_prompt_handler(onprompt)
 
 
 def save_images_with_metadata(images, output_dir, save_type="", prompt=None, extra_pnginfo=None, prefix="", compress_level=4):
@@ -41,7 +54,6 @@ def save_images_with_metadata(images, output_dir, save_type="", prompt=None, ext
     return results
 
 
-# From ComfyUI-Impact-Pack
 def workflow_to_map(workflow):
     nodes = {}
     links = {}
@@ -187,11 +199,8 @@ class InteractiveSwitchWithParameters:
 
     @classmethod
     def IS_CHANGED(s, selector1=None, selector2=None, selector3=None, selector4=None, selector5=None, selector6=None, selector7=None, selector8=None, unique_id=None):
-        # [this snippet from Impact nodes]
-        # NOTE: extra_pnginfo is not populated for IS_CHANGED.
-        #       so extra_pnginfo is useless in here
         try:
-            workflow = core.current_prompt['extra_data']['extra_pnginfo']['workflow']
+            workflow = current_prompt['extra_data']['extra_pnginfo']['workflow']
         except:
             print("Interactive - Error obtaining current_prompt workflow. This may still work.")
             return 0
