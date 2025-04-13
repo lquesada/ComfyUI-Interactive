@@ -3,6 +3,7 @@
 
 import { app } from "../../scripts/app.js";
 import { api } from "../../scripts/api.js";
+import { applyTextReplacements } from "../../scripts/utils.js";
 
 
 const activeColor = "#335533"
@@ -351,6 +352,23 @@ app.registerExtension({
         }
         if (node.comfyClass == "InteractiveSwitch" || node.comfyClass == "InteractiveSwitchWithParameters") {
             updateInteractive();
+        }
+    }
+});
+
+app.registerExtension({
+    name: "interactive.replacetext",
+    async beforeRegisterNodeDef(nodeType, nodeData, app) {
+        if (nodeData.name == "InteractiveSave") {
+            const onNodeCreated = nodeType.prototype.onNodeCreated;
+            nodeType.prototype.onNodeCreated = function() {
+                    const r = onNodeCreated ? onNodeCreated.apply(this, arguments) : void 0;
+                    const widget = this.widgets.find((w) => w.name === "filename_prefix");
+                    widget.serializeValue = () => {
+                    return applyTextReplacements(app, widget.value);
+                    };
+                    return r;
+            };
         }
     }
 });
