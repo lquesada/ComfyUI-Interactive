@@ -38,17 +38,17 @@ These nodes do not require auto-enqueue but need an empty queue to work, so that
 
 This example uses "Interactive Selector" and "Interactive Switch" nodes to propagate one chosen image forward, and an "Interactive Save" node to gate saving an image on a button click.
 
-Download the example workflow from [here](interactive_example_workflow_simple.json) or drag and drop the screenshot into ComfyUI.
+Download the example workflow from [here](example_workflows/example.json) or drag and drop the screenshot into ComfyUI.
 
-![Workflow](interactive_example_workflow_simple.png)
+![Workflow](example.png)
 
 ## Example (Parameters)
 
 This example uses "Interactive Selector (with parameters)" and "Interactive Switch (with parameters)" nodes to propagate one chosen image forward together with the accompanying parameters, and an "Interactive Save" node to gate saving an image on a button click.
 
-Download the example workflow from [here](interactive_example_workflow_with_parameters.json) or drag and drop the screenshot into ComfyUI.
+Download the example workflow from [here](example_workflows/example_parameters.json) or drag and drop the screenshot into ComfyUI.
 
-![Workflow](interactive_example_workflow_with_parameters.png)
+![Workflow](example_parameters.png)
 
 ## Example (Full workflow with several options per step)
 
@@ -56,17 +56,17 @@ This example uses SDXL Turbo to quickly sample images, and uses several rounds o
 
 This node requires the [Anything Everywhere](https://github.com/chrisgoringe/cg-use-everywhere) nodes to avoid plenty of manual connections. Note though that there must be a directly or indirectly linked path (i.e. without anything everywhere nodes) from interactive nodes so that they work properly.
 
-Download the example workflow from [here](interactive_example_workflow_full.json) or drag and drop the screenshot into ComfyUI.
+Download the example workflow from [here](example_workflows/stop_and_preview.json) or drag and drop the screenshot into ComfyUI.
 
-![Workflow](interactive_example_workflow_full.png)
+![Workflow](stop_and_preview.png)
 
 ## Example (Low-step preview before continuing sampling)
 
 This example samples to 5 steps, then uses a single interactive selector to show a preview and block further sampling. If the results are satisfactory, the selector can be triggered to continue the sampling.
 
-Download the example workflow from [here](interactive_example_workflow_preview.json) or drag and drop the screenshot into ComfyUI.
+Download the example workflow from [here](example_workflows/choose_your_own_combination.json) or drag and drop the screenshot into ComfyUI.
 
-![Workflow](interactive_example_workflow_preview.png)
+![Workflow](choose_your_own_combination.png)
 
 # Installation Instructions
 
