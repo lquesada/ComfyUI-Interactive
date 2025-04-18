@@ -254,7 +254,8 @@ function resetInteractiveForward(node) {
 
         if (currentNode.type === "InteractiveSelector" || currentNode.type == "InteractiveSelectorWithParameters") {
             findWidgetByName(currentNode, "selected").value = false;
-            currentNode.imgs = [];
+            // FIXME this now breaks so I commented it out:
+            // currentNode.imgs = [];
         }
 
         const connections = getNodeConnections(currentNode);
