@@ -15,8 +15,6 @@ import numpy as np
 
 from comfy.cli_args import args
 
-import folder_paths
-
 
 current_prompt = None
 
@@ -29,6 +27,32 @@ def onprompt(json_data):
     return json_data
 
 PromptServer.instance.add_on_prompt_handler(onprompt)
+
+
+def save_images_with_metadata(images, output_dir, save_type="", prompt=None, extra_pnginfo=None, prefix="", compress_level=4):
+    filename_prefix = prefix
+    results = []
+    full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(
+        filename_prefix, output_dir, images[0].shape[1], images[0].shape[0]
+    )
+
+    for batch_number, image in enumerate(images):
+        img = Image.fromarray((255. * image.cpu().numpy()).clip(0, 255).astype(np.uint8))
+        metadata = PngInfo()
+
+        if prompt:
+            metadata.add_text("prompt", json.dumps(prompt))
+        if extra_pnginfo:
+            for key, value in extra_pnginfo.items():
+                metadata.add_text(key, json.dumps(value))
+
+        file = f"{filename.replace('%batch_num%', str(batch_number))}_{counter:05}_.png"
+        img.save(os.path.join(full_output_folder, file), pnginfo=metadata, compress_level=compress_level)
+        results.append({"filename": file, "subfolder": subfolder, "type": save_type})
+        counter += 1
+
+    return results
+
 
 def workflow_to_map(workflow):
     nodes = {}
@@ -232,7 +256,6 @@ class InteractiveSave:
     def __init__(self):
         self.prefix_append = "_save_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for _ in range(5))
         self.compress_level = 4
-        self.type = "output"
         self.last_save_trigger = 0;
 
     @classmethod
@@ -274,30 +297,7 @@ class InteractiveSave:
             self.type = "temp";
             filename_prefix += self.prefix_append;
 
-        # From ComfyUI Core Node SaveImage
-        full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, output_dir, images[0].shape[1], images[0].shape[0])
-        results = list()
-        for (batch_number, image) in enumerate(images):
-            i = 255. * image.cpu().numpy()
-            img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
-            metadata = None
-            if not args.disable_metadata:
-                metadata = PngInfo()
-                if prompt is not None:
-                    metadata.add_text("prompt", json.dumps(prompt))
-                if extra_pnginfo is not None:
-                    for x in extra_pnginfo:
-                        metadata.add_text(x, json.dumps(extra_pnginfo[x]))
-
-            filename_with_batch_num = filename.replace("%batch_num%", str(batch_number))
-            file = f"{filename_with_batch_num}_{counter:05}_.png"
-            img.save(os.path.join(full_output_folder, file), pnginfo=metadata, compress_level=self.compress_level)
-            results.append({
-                "filename": file,
-                "subfolder": subfolder,
-                "type": self.type
-            })
-            counter += 1
+        results = save_images_with_metadata(images=images, output_dir=output_dir, save_type=self.type, prompt=prompt, extra_pnginfo=extra_pnginfo, prefix=filename_prefix, compress_level=self.compress_level);
 
         return { "ui": { "images": results } }
 
