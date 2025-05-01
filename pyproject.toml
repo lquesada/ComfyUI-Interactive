@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-interactive"
 description = "Nodes that allow making the UI interactive, with selectors and switches, etc.. Enables selecting across multiple options with the click of a button to move a workflow forward."
-version = "1.0.5"
+version = "1.0.6"
 license = { file = "LICENSE" }
 
 [project.urls]
